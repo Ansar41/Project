@@ -1,0 +1,66 @@
+
+//project for 1yr 2nd semester
+
+
+#include <iostream>
+#include <conio.h>
+#include <graphics.h>
+#include <windows.h>
+using namespace std;
+int main()
+{
+    cout<<"Welcome to my First Project..."<<endl<<"Hope you like it :)"<<endl;
+    cout<<"What do you want to draw?"<<endl;
+    cout<<"Press 1 if you want to draw curve(free hand) or press 2 if you want to straight lines"<<endl;
+    int a;
+    cin>>a;
+    if(a==1)
+    {
+        initwindow(400,400,"");  //show window
+        int mx,my;
+        POINT cp;
+        bool end = false;
+        while(!end)
+        {
+            GetCursorPos(&cp);
+            mx = cp.x;
+            my = cp.y;
+
+            delay(0);
+            if(GetAsyncKeyState(VK_LBUTTON))
+            {
+                setcolor(2);
+                circle(mx,my,3);
+//                cout<<mx<<" "<<my<<endl;
+
+            }
+            if(GetAsyncKeyState(VK_RBUTTON))
+                break;
+        }
+    }
+    else
+    {
+        initwindow(400,400,"");  //show window
+        POINT c2;
+        GetCursorPos(&c2);
+        int x1 = c2.x;
+        int y1 = c2.y;
+        while(true)
+        {
+            delay(0);
+            POINT c;
+            setcolor(2);
+            GetCursorPos(&c);
+            int x2 = c.x;
+            int y2 = c.y;
+            if(GetAsyncKeyState(VK_LBUTTON))
+            {
+                line(x1,y1,x2,y2);
+                x1=x2;
+                y1=y2;
+            }
+        }
+    }
+ //   getch();
+    closegraph();
+}
